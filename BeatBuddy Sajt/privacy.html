@@ -4,59 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeatBuddy | Politika Privatnosti</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #b446ff; --bg: #0b0e14; --card: rgba(255,255,255,0.03); }
-        body { margin: 0; background: var(--bg); color: white; font-family: 'Outfit', sans-serif; line-height: 1.7; }
-        .container { max-width: 900px; margin: 100px auto; padding: 40px; background: var(--card); border-radius: 30px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px); }
-        h1 { color: var(--accent); font-size: 2.5rem; margin-bottom: 10px; }
-        h2 { color: white; margin-top: 30px; border-left: 4px solid var(--accent); padding-left: 15px; }
-        p, li { color: #a0a5b1; font-size: 1.05rem; }
-        .date { color: #666; font-size: 0.9rem; margin-bottom: 40px; }
-        .back-btn { display: inline-block; margin-bottom: 30px; color: var(--accent); text-decoration: none; font-weight: bold; transition: 0.3s; }
-        .back-btn:hover { transform: translateX(-5px); opacity: 0.8; }
+        :root {
+            --primary: #00d4ff;
+            --bg: #05070a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: #8a8f9d;
+        }
+        body { margin: 0; background: var(--bg); color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.7; }
+        .container { max-width: 800px; margin: 80px auto; padding: 50px; background: var(--card-bg); border-radius: 35px; border: 1px solid var(--card-border); backdrop-filter: blur(15px); }
+        h1 { color: #fff; font-size: 3rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -1.5px; }
+        h1 span { color: var(--primary); }
+        h2 { color: #fff; margin-top: 40px; font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        h2::before { content: ''; width: 4px; height: 24px; background: var(--primary); border-radius: 10px; display: inline-block; }
+        p, li { color: var(--text-dim); font-size: 1.05rem; }
+        .date { color: var(--primary); font-size: 0.9rem; font-weight: 700; margin-bottom: 40px; opacity: 0.8; }
+        .back-btn { display: inline-block; margin-bottom: 30px; color: var(--text-dim); text-decoration: none; font-weight: 700; transition: 0.3s; font-size: 0.9rem; }
+        .back-btn:hover { color: var(--primary); transform: translateX(-5px); }
         section { margin-bottom: 40px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="index.html" class="back-btn">← Nazad na početnu</a>
-        <h1>Politika Privatnosti</h1>
-        <p class="date">Poslednje ažuriranje: 31. januara 2026.</p>
+        <h1>Politika <span>Privatnosti</span></h1>
+        <p class="date">AŽURIRANO: 01. FEBRUARA 2026.</p>
 
         <section>
-            <h2>1. Opšte informacije</h2>
-            <p>Vaša privatnost nam je prioritet. BeatBuddy je dizajniran tako da prikuplja minimalnu količinu podataka neophodnu za stabilno funkcionisanje muzičkog servisa na Discordu.</p>
+            <h2>1. Prikupljanje podataka</h2>
+            <p>BeatBuddy prikuplja samo podatke koji su neophodni za rad. To uključuje ID vašeg servera, podešavanja bota na tom serveru (prefix, jačina zvuka) i vaše korisničko ime kada koristite komande.</p>
         </section>
 
         <section>
-            <h2>2. Podaci koje prikupljamo</h2>
-            <p>BeatBuddy **ne snima** vaše glasovne razgovore niti čita vaše privatne poruke. Podaci koje možemo sačuvati uključuju:</p>
-            <ul>
-                <li><strong>ID Servera:</strong> Kako bismo znali na kom serveru se pušta muzika.</li>
-                <li><strong>ID Korisnika:</strong> Isključivo radi funkcionalnosti kao što su DJ uloge ili glasanje za pesmu.</li>
-                <li><strong>Logovi komandi:</strong> Kratkotrajni zapisi o tome koja je komanda korišćena radi otklanjanja grešaka (debug).</li>
-            </ul>
+            <h2>2. Korišćenje glasovnih podataka</h2>
+            <p><strong>BeatBuddy nikada ne snima, ne čuva niti obrađuje vaše privatne razgovore.</strong> Bot pristupa voice kanalu isključivo radi reprodukcije audio strima koji vi zatražite.</p>
         </section>
 
         <section>
-            <h2>3. Kako koristimo podatke</h2>
-            <p>Podaci se koriste isključivo za:</p>
-            <ul>
-                <li>Obezbeđivanje stabilne muzičke reprodukcije.</li>
-                <li>Pamćenje vaših podešavanja (npr. jačina zvuka ili "repeat" mod).</li>
-                <li>Poboljšanje performansi bota na osnovu statistike korišćenja.</li>
-            </ul>
+            <h2>3. Logovi komandi</h2>
+            <p>Radi poboljšanja usluge i rešavanja bugova, privremeno čuvamo logove korišćenih komandi. Ovi logovi ne sadrže vaše privatne poruke, već samo naziv komande i vreme izvršenja.</p>
         </section>
 
         <section>
-            <h2>4. Deljenje podataka</h2>
-            <p>BeatBuddy nikada ne prodaje, ne iznajmljuje niti deli vaše podatke sa trećim licima. Svi podaci se koriste interno unutar aplikacije i čuvaju se na sigurnim serverima.</p>
+            <h2>4. Kolačići (Cookies)</h2>
+            <p>Naš sajt može koristiti osnovne kolačiće za pamćenje vaših sesija ukoliko se ulogujete preko Discorda. Ovi podaci se ne dele sa oglašivačima.</p>
         </section>
 
         <section>
-            <h2>5. Kontakt</h2>
-            <p>Ako imate bilo kakvih pitanja u vezi sa vašim podacima, možete nas kontaktirati putem našeg <a href="https://discord.com/invite/7vdGCVNKmp" style="color: var(--accent);">Support Servera</a>.</p>
+            <h2>5. Čuvanje i brisanje podataka</h2>
+            <p>Podaci se čuvaju na sigurnim serverima. Ukoliko želite da obrišemo sve podatke povezane sa vašim serverom, to možete učiniti izbacivanjem bota sa servera ili kontaktom na Supportu.</p>
+        </section>
+
+        <section>
+            <h2>6. Treća lica</h2>
+            <p>Ne prodajemo vaše podatke. Jedini entiteti koji mogu imati uvid u tehničke podatke su naši hosting provajderi i Discord platforma putem svog API-ja.</p>
         </section>
     </div>
 </body>

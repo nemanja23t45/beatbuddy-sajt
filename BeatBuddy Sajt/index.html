@@ -3,221 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeatBuddy | Premium Muzičko Iskustvo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>BeatBuddy | Premium Discord Music</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #00d4ff;
-            --primary-glow: rgba(0, 212, 255, 0.3);
-            --bg: #05070a;
+            --primary-glow: rgba(0, 212, 255, 0.4);
+            --bg: #030508;
             --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
+            --card-border: rgba(255, 255, 255, 0.07);
             --text-main: #ffffff;
-            --text-dim: #8a8f9d;
+            --text-dim: #8e9297;
         }
 
         html { scroll-behavior: smooth; }
         body {
-            margin: 0; padding: 0;
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
+            margin: 0; background: var(--bg); color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden;
         }
 
-        #notesCanvas {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #10141d 0%, #05070a 100%);
-            pointer-events: none;
-        }
+        #notesCanvas { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; opacity: 0.3; }
 
-        /* --- MODERNA NAVIGACIJA --- */
+        /* --- NAVIGACIJA --- */
         .navbar {
-            position: fixed; top: 0; left: 0; right: 0;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 10%;
-            background: rgba(5, 7, 10, 0.7);
-            backdrop-filter: blur(15px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--card-border);
+            position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between;
+            padding: 20px 10%; align-items: center; box-sizing: border-box;
+            background: rgba(3, 5, 8, 0.8); backdrop-filter: blur(20px);
+            z-index: 1000; border-bottom: 1px solid var(--card-border);
         }
-        .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; }
-        .nav-logo { width: 35px; height: 35px; border-radius: 10px; box-shadow: 0 0 15px var(--primary-glow); }
-        .nav-name { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.5px; }
+        .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; font-weight: 800; font-size: 1.3rem; }
+        .nav-logo { width: 38px; height: 38px; border-radius: 12px; box-shadow: 0 0 15px var(--primary-glow); }
         
-        #status-dot {
-            width: 10px; height: 10px;
-            background-color: #444;
-            border-radius: 50%;
-            margin-left: 5px;
-            transition: 0.5s;
-        }
-        .online { background-color: #2ecc71 !important; box-shadow: 0 0 12px #2ecc71 !important; }
-        .offline { background-color: #e74c3c !important; box-shadow: 0 0 12px #e74c3c !important; }
+        #status-dot { width: 10px; height: 10px; background: #444; border-radius: 50%; margin-left: 5px; transition: 0.5s; }
+        .online { background: #2ecc71 !important; box-shadow: 0 0 15px #2ecc71; }
+        .offline { background: #e74c3c !important; box-shadow: 0 0 15px #e74c3c; }
 
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--text-dim); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-weight: 600; margin-left: 30px; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
 
-        /* --- MODERNI HERO --- */
-        .hero { padding: 180px 20px 100px; text-align: center; max-width: 1200px; margin: 0 auto; }
+        /* --- HERO SEKCIJA (POPRAVLJEN GRADIENT) --- */
+        .hero { padding: 220px 20px 100px; text-align: center; }
         .hero-badge {
             background: rgba(0, 212, 255, 0.1); color: var(--primary);
-            padding: 8px 16px; border-radius: 100px; font-size: 0.85rem;
-            font-weight: 700; display: inline-block; margin-bottom: 25px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            animation: fadeInDown 0.8s ease;
+            padding: 10px 20px; border-radius: 100px; font-size: 0.8rem;
+            font-weight: 800; display: inline-block; margin-bottom: 30px;
+            border: 1px solid rgba(0, 212, 255, 0.2); letter-spacing: 1px;
         }
-        .hero-title { font-size: 5rem; font-weight: 800; margin: 0; line-height: 1.05; letter-spacing: -2px; }
-        .hero-title span { color: var(--primary); text-shadow: 0 0 30px var(--primary-glow); }
-        .hero-subtitle { color: var(--text-dim); font-size: 1.25rem; max-width: 650px; margin: 30px auto 45px; line-height: 1.6; }
-
-        .hero-btns { display: flex; justify-content: center; gap: 15px; }
-        .btn { padding: 18px 40px; border-radius: 16px; font-weight: 700; text-decoration: none; transition: 0.3s; font-size: 1.05rem; cursor: pointer; border: none; }
-        .btn-primary { background: var(--primary); color: #000; box-shadow: 0 10px 30px var(--primary-glow); }
-        .btn-secondary { background: var(--card-bg); color: white; border: 1px solid var(--card-border); backdrop-filter: blur(10px); }
-        .btn:hover { transform: translateY(-5px); filter: brightness(1.1); }
-
-        /* --- STATS KARTICE --- */
-        .stats-grid { display: flex; justify-content: center; gap: 25px; margin-top: 80px; }
-        .stat-card { 
-            background: var(--card-bg); 
-            border: 1px solid var(--card-border); 
-            padding: 35px; 
-            border-radius: 24px; 
-            min-width: 200px;
-            backdrop-filter: blur(10px);
-            transition: 0.3s;
+        
+        /* FIX ZA GRADIENT TEXT */
+        .hero-title { 
+            font-size: 6rem; 
+            font-weight: 800; 
+            margin: 0; 
+            letter-spacing: -3px; 
+            line-height: 1.1;
+            color: #ffffff;
         }
-        .stat-card:hover { border-color: var(--primary); transform: scale(1.05); }
-        .stat-card h3 { font-size: 3rem; margin: 0; color: var(--primary); font-weight: 800; }
-        .stat-card p { margin: 10px 0 0; color: var(--text-dim); text-transform: uppercase; font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; }
-
-        footer { margin-top: 150px; padding: 50px 10%; border-top: 1px solid var(--card-border); text-align: center; }
-        footer p { color: var(--text-dim); font-size: 0.95rem; }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .hero-title span { 
+            background: linear-gradient(to right, #ffffff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent; /* Fallback */
+            display: inline-block;
         }
 
-        @media (max-width: 768px) {
-            .hero-title { font-size: 3.2rem; }
-            .stats-grid { flex-direction: column; align-items: center; }
-            .stat-card { width: 80%; }
+        .hero-subtitle { color: var(--text-dim); font-size: 1.4rem; max-width: 700px; margin: 30px auto 50px; }
+
+        .btn-group { display: flex; justify-content: center; gap: 20px; }
+        .btn { padding: 20px 45px; border-radius: 18px; font-weight: 800; text-decoration: none; transition: 0.4s; font-size: 1.1rem; border: none; cursor: pointer; }
+        .btn-primary { background: var(--primary); color: #000; box-shadow: 0 0 30px var(--primary-glow); }
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 0 50px var(--primary-glow); }
+        .btn-secondary { background: var(--card-bg); color: #fff; border: 1px solid var(--card-border); backdrop-filter: blur(10px); }
+
+        /* --- DISCORD COMMAND PREVIEW (NOVO) --- */
+        .cmd-preview {
+            background: #1e1f22;
+            max-width: 600px;
+            margin: 80px auto 0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: left;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-    </style>
-</head>
-<body>
+        .cmd-line { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; }
+        .cmd-user { color: #fff; font-weight: 700; font-size: 0.9rem; }
+        .cmd-text { color: #dbdee1; font-size: 0.9rem; }
+        .cmd-bot-tag { background: #5865f2; color: #fff; font-size: 0.6rem; padding: 2px 4px; border-radius: 4px; font-weight: 800; }
+
+        /* --- FEATURES --- */
+        .section { padding: 100px 10%; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
+        .card { 
+            background: var(--card-bg); border: 1px solid var(--card-border); 
+            padding: 50px 30px; border-radius: 35px; text-align: left;
+            transition: 0.4s; backdrop-filter: blur(10px);
+        }
+        .card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        .card h3 { font-size: 1.6rem; margin-bottom: 15px; color: #fff; }
+
+        footer { padding: 60px 10%; border-top: 1px solid var(--card-border); text-align: center; color: var(--text-dim); }
+
+        @media (max-width: 1000px) {
+            .hero-title { font-size: 3.5rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+
+        /* Stil za Discord sekciju na dnu */
+        .still-questions {
+            margin: 100px 10%;
+            padding: 60px 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 40px;
+            border: 1px solid var(--card-border);
+        }
+        .still-questions h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; color: #fff; }
+        .still-questions p { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 30px; }
+        .btn-discord-white {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: #ffffff; color: #000000; padding: 16px 45px;
+            border-radius: 100px; font-weight: 800; text-decoration: none;
+            transition: 0.3s; font-size: 1rem;
+        }
+        .btn-discord-white:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15); }
+        .discord-icon-svg { width: 22px; height: 22px; fill: currentColor; }
+        </style>
+    </head>
+    <body>
     <canvas id="notesCanvas"></canvas>
 
     <nav class="navbar">
         <a href="index.html" class="nav-brand">
             <img src="beatbuddy.png" class="nav-logo" alt="Logo">
-            <span class="nav-name">BEATBUDDY</span>
-            <div id="status-dot" title="Učitavam status..."></div>
+            BeatBuddy <div id="status-dot"></div>
         </a>
         <div class="nav-links">
-            <a href="index.html">Početna</a>
+            <a href="index.html">Pocetna</a>
+            <a href="faq.html">FAQ</a>
             <a href="komande.html">Komande</a>
-            <a href="https://discord.com/invite/7vdGCVNKmp" target="_blank">Podrška</a>
+            <a href="https://discord.com/invite/7vdGCVNKmp" target="_blank">Support</a>
         </div>
     </nav>
 
-    <div class="hero">
-        <div class="hero-badge"> 🎧 BeatBuddy – tvoj lični muzički saputnik na Discordu! 🎶</div>
+    <section class="hero">
+        <div class="hero-badge">🎧 BeatBuddy – tvoj lični muzički saputnik na Discordu! 🎶</div>
         <h1 class="hero-title">Vaša muzika,<br>vaša <span>pravila.</span></h1>
-        <p class="hero-subtitle">Iskusite kristalno čist zvuk, napredne komande i potpunu stabilnost. Najbolji muzički bot za vaš Discord server.</p>
+        <p class="hero-subtitle">Iskusite najviši kvalitet zvuka na Discordu. BeatBuddy donosi stabilnost, brzinu i EX-YU radio stanice na vaš server.</p>
         
-        <div class="hero-btns">
-            <a href="https://discord.com/oauth2/authorize?client_id=1159192597781282907" class="btn btn-primary">Dodaj u Discord</a>
-            <a href="komande.html" class="btn btn-secondary">Lista Komandi</a>
+        <div class="btn-group">
+            <a href="https://discord.com/oauth2/authorize?client_id=1159192597781282907" class="btn btn-primary">Add Bot</a>
+            <a href="komande.html" class="btn btn-secondary">Komande</a>
         </div>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3 id="server-count">--</h3>
-                <p>Aktivna Servera</p>
+        <div class="cmd-preview">
+            <div class="cmd-line">
+                <span class="cmd-user">Korisnik</span>
+                <span class="cmd-text">/play - Unesi ime pesme,radio link,autora ili link</span>
             </div>
-            <div class="stat-card">
-                <h3 id="user-count">--</h3>
-                <p>Zadovoljnih Korisnika</p>
+            <div class="cmd-line" style="margin-left: 20px;">
+                <img src="beatbuddy.png" style="width: 25px; border-radius: 50%;">
+                <span class="cmd-user">BeatBuddy <span class="cmd-bot-tag">BOT</span></span>
+                <span class="cmd-text" style="color: var(--primary);">🎶 Trenutno puštam: Kemal - Dosao sam samo da te vidim</span>
             </div>
         </div>
-    </div>
+    </section>
+    <section class="section" id="features" style="padding: 120px 10%;">
+        <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+            
+            <div class="card" style="position: relative; overflow: hidden; background: var(--card-bg); border: 1px solid var(--card-border); padding: 50px 35px; border-radius: 40px; transition: 0.4s ease; backdrop-filter: blur(10px);">
+                <div style="font-size: 2.5rem; margin-bottom: 25px;">🕒</div>
+                <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 15px; font-weight: 800; letter-spacing: -0.5px;">24/7 Režim</h3>
+                <p style="color: var(--text-dim); line-height: 1.6; font-size: 1.05rem;">Bot ostaje u voice kanalu čak i kada svi izađu. Tvoja muzika nikada ne prestaje, danju ili noću.</p>
+                <div style="position: absolute; bottom: -20px; right: -20px; font-size: 5rem; opacity: 0.03; pointer-events: none;">🕒</div>
+            </div>
 
-    <footer>
-        <p>© 2024 BeatBuddy. Razvio <span style="color: var(--primary); font-weight: 700;">vukasinov1c</span></p>
+            <div class="card" style="position: relative; overflow: hidden; background: var(--card-bg); border: 1px solid var(--card-border); padding: 50px 35px; border-radius: 40px; transition: 0.4s ease; backdrop-filter: blur(10px);">
+                <div style="font-size: 2.5rem; margin-bottom: 25px;">🎧</div>
+                <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 15px; font-weight: 800; letter-spacing: -0.5px;">HD Audio</h3>
+                <p style="color: var(--text-dim); line-height: 1.6; font-size: 1.05rem;">Uživaj u kristalno čistom 320kbps zvuku. Bez seckanja, bez laga, samo vrhunski studijski kvalitet.</p>
+                <div style="position: absolute; bottom: -20px; right: -20px; font-size: 5rem; opacity: 0.03; pointer-events: none;">🎧</div>
+            </div>
+
+            <div class="card" style="position: relative; overflow: hidden; background: var(--card-bg); border: 1px solid var(--card-border); padding: 50px 35px; border-radius: 40px; transition: 0.4s ease; backdrop-filter: blur(10px);">
+                <div style="font-size: 2.5rem; margin-bottom: 25px;">💎</div>
+                <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 15px; font-weight: 800; letter-spacing: -0.5px;">Potpuno Free</h3>
+                <p style="color: var(--text-dim); line-height: 1.6; font-size: 1.05rem;">Sve premium funkcije, filteri i radio stanice su ti dostupni odmah. Bez skrivenih troškova.</p>
+                <div style="position: absolute; bottom: -20px; right: -20px; font-size: 5rem; opacity: 0.03; pointer-events: none;">💎</div>
+            </div>
+
+        </div>
+    </section>
+    <section class="still-questions">
+        <h2>Još uvek imaš pitanja?</h2>
+        <p>Pridruži se našem serveru i pitaj naš tim direktno!</p>
+        <a href="https://discord.com/invite/7vdGCVNKmp" target="_blank" class="btn-discord-white">
+            Pridruži se 
+            <svg class="discord-icon-svg" viewBox="0 0 127.14 96.36">
+                <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.71,32.65-1.82,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.19-16.14h0C130.46,50.45,121.43,26.7,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.06,65.69,84.69,65.69Z"/>
+            </svg>
+        </a>
+    </section>
+    <footer style="padding: 60px 10%; border-top: 1px solid var(--card-border); text-align: center;">
+        <div style="margin-bottom: 20px;">
+            <p style="color: var(--text-dim);">© 2026 BeatBuddy. Made by 
+                <a href="https://guns.lol/vukasinov1c" target="_blank" style="text-decoration: none;">
+                    <span style="color: var(--primary); font-weight: 700; cursor: pointer;">vukasinov1c</span>
+                </a>
+            </p>
+        </div>
+        <div style="display: flex; justify-content: center; gap: 20px; font-size: 0.85rem;">
+            <a href="privacy.html" style="color: var(--text-dim); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-dim)'">Politika Privatnosti</a>
+            <span style="color: var(--card-border);">|</span>
+            <a href="terms.html" style="color: var(--text-dim); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-dim)'">Uslovi Korišćenja</a>
+        </div>
     </footer>
-
     <script>
-        // --- Animacija Nota (Modernizovana) ---
-        const canvas = document.getElementById('notesCanvas');
-        const ctx = canvas.getContext('2d');
-        let notes = [];
-        const noteTypes = ['♪', '♫', '♬'];
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Note {
-            constructor() { this.reset(); this.y = Math.random() * canvas.height; }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = canvas.height + 50;
-                this.size = Math.random() * 15 + 10;
-                this.speed = Math.random() * 1 + 0.5;
-                this.opacity = Math.random() * 0.15;
-                this.type = noteTypes[Math.floor(Math.random() * noteTypes.length)];
-            }
-            update() { this.y -= this.speed; if (this.y < -50) this.reset(); }
-            draw() {
-                ctx.globalAlpha = this.opacity;
-                ctx.font = `${this.size}px sans-serif`;
-                ctx.fillStyle = "#00d4ff";
-                ctx.fillText(this.type, this.x, this.y);
-            }
-        }
-        for (let i = 0; i < 30; i++) notes.push(new Note());
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            notes.forEach(n => { n.update(); n.draw(); });
-            requestAnimationFrame(animate);
-        }
-        animate();
-
         // --- FIREBASE STATS & STATUS ---
         async function updateStats() {
             try {
                 const response = await fetch('https://beatbuddystats-default-rtdb.europe-west1.firebasedatabase.app/.json?t=' + Date.now());
                 const data = await response.json();
-                
                 if(data) {
-                    // Update Brojeva
-                    document.getElementById('server-count').innerText = (data.servers || 0) + "+";
-                    const uCount = data.users || 0;
-                    document.getElementById('user-count').innerText = uCount >= 1000 ? (uCount / 1000).toFixed(1) + "k+" : uCount + "+";
-
-                    // Update Status Dot-a
                     const dot = document.getElementById('status-dot');
                     const now = Math.floor(Date.now() / 1000);
-                    
-                    // Ako je bot poslao signal u zadnjih 5 min (300s)
                     if (data.last_seen && (now - data.last_seen) < 300) {
                         dot.className = 'online';
-                        dot.title = "Bot je na mreži";
                     } else {
                         dot.className = 'offline';
-                        dot.title = "Bot je trenutno isključen";
                     }
                 }
-            } catch (error) { console.error("Greška pri osvežavanju podataka:", error); }
+            } catch (e) { console.error(e); }
         }
-
         updateStats();
-        setInterval(updateStats, 30000); // Provera na 30 sekundi
+        setInterval(updateStats, 30000);
+
+        // --- ANIMACIJA NOTA ---
+        const canvas = document.getElementById('notesCanvas');
+        const ctx = canvas.getContext('2d');
+        let notes = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+        class Note {
+            constructor() { this.reset(); this.y = Math.random() * canvas.height; }
+            reset() { this.x = Math.random() * canvas.width; this.y = canvas.height + 50; this.size = Math.random() * 12 + 10; this.speed = Math.random() * 0.7 + 0.3; this.opacity = Math.random() * 0.1; }
+            update() { this.y -= this.speed; if (this.y < -50) this.reset(); }
+            draw() { ctx.globalAlpha = this.opacity; ctx.font = `${this.size}px Arial`; ctx.fillStyle = "#00d4ff"; ctx.fillText('♪', this.x, this.y); }
+        }
+        for (let i = 0; i < 20; i++) notes.push(new Note());
+        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); notes.forEach(n => { n.update(); n.draw(); }); requestAnimationFrame(animate); }
+        animate();
     </script>
 </body>
 </html>

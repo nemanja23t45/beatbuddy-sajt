@@ -32,7 +32,6 @@
             pointer-events: none;
         }
 
-        /* --- NAVIGACIJA --- */
         .navbar {
             position: fixed; top: 0; left: 0; right: 0;
             display: flex; justify-content: space-between; align-items: center;
@@ -45,62 +44,60 @@
         .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; }
         .nav-logo { width: 35px; height: 35px; border-radius: 10px; }
         .nav-name { font-weight: 800; font-size: 1.2rem; }
+
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { color: var(--text-dim); text-decoration: none; font-weight: 600; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
 
-        /* --- KONTEJNER --- */
-        .container { max-width: 1100px; margin: 160px auto 100px; padding: 0 20px; }
-        .header-text { text-align: center; margin-bottom: 60px; }
-        .header-text h1 { font-size: 3.5rem; font-weight: 800; margin: 0; }
-        .header-text h1 span { color: var(--primary); text-shadow: 0 0 30px var(--primary-glow); }
-        .header-text p { color: var(--text-dim); font-size: 1.1rem; margin-top: 15px; }
+        .container { max-width: 1000px; margin: 150px auto 50px; padding: 0 20px; }
+        .header { text-align: center; margin-bottom: 60px; }
+        .header h1 { font-size: 3.5rem; font-weight: 800; margin: 0; letter-spacing: -2px; }
+        .header h1 span { color: var(--primary); }
+        .header p { color: var(--text-dim); font-size: 1.2rem; margin-top: 15px; }
 
-        /* Pretraga */
-        .search-container { max-width: 600px; margin: 0 auto 60px; }
-        .search-bar {
-            width: 100%; padding: 18px 30px; border-radius: 16px;
-            background: var(--card-bg); border: 1px solid var(--card-border);
-            color: white; font-family: inherit; font-size: 1rem; outline: none; transition: 0.3s;
-        }
-        .search-bar:focus { border-color: var(--primary); box-shadow: 0 0 20px rgba(0, 212, 255, 0.1); }
-
-        /* Mreža Komandi */
-        .category-header { 
-            display: flex; align-items: center; gap: 15px; 
-            margin: 50px 0 25px; padding-left: 5px;
-        }
-        .category-header h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin: 0; }
-        .category-line { flex-grow: 1; height: 1px; background: var(--card-border); }
-
-        .commands-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px;
+        .category-title { 
+            color: var(--text-main); 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            margin: 40px 0 20px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
         }
 
+        .commands-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .command-card {
-            background: var(--card-bg); padding: 30px; border-radius: 20px;
-            border: 1px solid var(--card-border); transition: 0.3s;
-            cursor: pointer; position: relative; backdrop-filter: blur(5px);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 25px;
+            border-radius: 20px;
+            transition: 0.3s;
         }
-        .command-card:hover { transform: translateY(-5px); border-color: var(--primary); background: rgba(0, 212, 255, 0.04); }
-        
-        .command-card.copied::after {
-            content: 'Kopirano!'; position: absolute; top: 20px; right: 25px;
-            color: #2ecc71; font-size: 0.75rem; font-weight: 800;
+        .command-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .command-name { color: var(--primary); font-weight: 800; font-size: 1.1rem; margin-bottom: 10px; display: block; }
+        .command-desc { color: var(--text-dim); font-size: 0.95rem; }
+
+        .still-questions {
+            margin: 100px 0;
+            padding: 60px 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 40px;
+            border: 1px solid var(--card-border);
         }
-
-        .cmd-name { color: var(--primary); font-weight: 800; font-size: 1.1rem; margin-bottom: 10px; display: block; }
-        .cmd-desc { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
-
-        /* --- FOOTER --- */
-        footer { padding: 60px 10%; border-top: 1px solid var(--card-border); text-align: center; }
-        footer p { color: var(--text-dim); font-size: 0.9rem; }
-
-        @media (max-width: 768px) {
-            .header-text h1 { font-size: 2.5rem; }
-            .commands-grid { grid-template-columns: 1fr; }
+        .still-questions h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; color: #fff; }
+        .still-questions p { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 30px; }
+        .btn-discord {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: #ffffff; color: #000000; padding: 16px 40px;
+            border-radius: 100px; font-weight: 800; text-decoration: none;
+            transition: 0.3s; font-size: 1rem;
         }
+        .btn-discord:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15); }
+        .discord-icon { width: 22px; height: 22px; fill: currentColor; }
+
+        footer { padding: 50px 10%; border-top: 1px solid var(--card-border); text-align: center; }
+        footer p { color: var(--text-dim); font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -109,126 +106,101 @@
     <nav class="navbar">
         <a href="index.html" class="nav-brand">
             <img src="beatbuddy.png" class="nav-logo" alt="Logo">
-            <span class="nav-name">BEATBUDDY</span>
+            <span class="nav-name">BeatBuddy</span>
         </a>
         <div class="nav-links">
             <a href="index.html">Početna</a>
-            <a href="https://discord.com/invite/7vdGCVNKmp" target="_blank">Podrška</a>
+            <a href="komande.html">Komande</a>
         </div>
     </nav>
 
     <div class="container">
-        <div class="header-text">
+        <div class="header">
             <h1>Sve <span>Komande</span></h1>
-            <p>Istraži mogućnosti BeatBuddy bota. Klikni na karticu da kopiraš komandu.</p>
+            <p>Sve što ti je potrebno za upravljanje muzikom na tvom serveru.</p>
         </div>
 
-        <div class="search-container">
-            <input type="text" id="commandSearch" class="search-bar" placeholder="Pretraži komande (play, volume, skip)...">
+        <div class="category-title">🎵 Osnovne Muzičke Komande</div>
+        <div class="commands-grid">
+            <div class="command-card">
+                <span class="command-name">/play &lt;pesma&gt;</span>
+                <span class="command-desc">Pušta pesmu ili je dodaje u red.</span>
+            </div>
+            <div class="command-card">
+                <span class="command-name">/pause / /resume</span>
+                <span class="command-desc">Pauziraj ili nastavi svirku.</span>
+            </div>
+            <div class="command-card">
+                <span class="command-name">/skip / /stop</span>
+                <span class="command-desc">Preskoči ili ugasi muziku skroz.</span>
+            </div>
+            <div class="command-card">
+                <span class="command-name">/nowplaying</span>
+                <span class="command-desc">Vidi šta trenutno trešti u kanalu.</span>
+            </div>
+            <div class="command-card">
+                <span class="command-name">/voteskip</span>
+                <span class="command-desc">Glasanje za skip pesme.</span>
+            </div>
         </div>
 
-        <div id="commandsWrapper">
-            
-            <div class="category-header">
-                <h2>🎵 Glavne Kontrole</h2>
-                <div class="category-line"></div>
+        <div class="category-title">📝 Upravljanje Redom</div>
+        <div class="commands-grid">
+            <div class="command-card">
+                <span class="command-name">/queue</span>
+                <span class="command-desc">Prikaži listu zakazanih pesama.</span>
             </div>
-            <div class="commands-grid">
-                <div class="command-card" onclick="copyCommand(this, '/play')">
-                    <span class="cmd-name">/play [pesma]</span>
-                    <span class="cmd-desc">Pušta pesmu ili je dodaje u red.</span>
-                </div>
-                <div class="command-card" onclick="copyCommand(this, '/pause')">
-                    <span class="cmd-name">/pause | /resume</span>
-                    <span class="cmd-desc">Pauziraj ili nastavi svirku.</span>
-                </div>
-                <div class="command-card" onclick="copyCommand(this, '/skip')">
-                    <span class="cmd-name">/skip | /stop</span>
-                    <span class="cmd-desc">Preskoči ili ugasi muziku skroz.</span>
-                </div>
-                <div class="command-card" onclick="copyCommand(this, '/nowplaying')">
-                    <span class="cmd-name">/nowplaying</span>
-                    <span class="cmd-desc">Vidi šta trenutno trešti u kanalu.</span>
-                </div>
-                <div class="command-card" onclick="copyCommand(this, '/voteskip')">
-                    <span class="cmd-name">/voteskip</span>
-                    <span class="cmd-desc">Glasanje za skip pesme.</span>
-                </div>
+            <div class="command-card">
+                <span class="command-name">/remove &lt;pozicija&gt;</span>
+                <span class="command-desc">Izbaci pesmu koja ti kvari vibe.</span>
             </div>
+            <div class="command-card">
+                <span class="command-name">/shuffle</span>
+                <span class="command-desc">Promešaj red k'o špil karata.</span>
+            </div>
+            <div class="command-card">
+                <span class="command-name">/repeat</span>
+                <span class="command-desc">Ponavljaj pesmu, listu ili ugasi.</span>
+            </div>
+        </div>
 
-            <div class="category-header">
-                <h2 style="color: #2ecc71;">📝 Upravljanje Redom</h2>
-                <div class="category-line"></div>
+        <div class="category-title">🔊 Audio Mikseta</div>
+        <div class="commands-grid">
+            <div class="command-card">
+                <span class="command-name">/volume &lt;0-100&gt;</span>
+                <span class="command-desc">Podesi jačinu (ne budi komšije!).</span>
             </div>
-            <div class="commands-grid">
-                <div class="command-card" onclick="copyCommand(this, '/queue')">
-                    <span class="cmd-name">/queue</span>
-                    <span class="cmd-desc">Prikaži listu zakazanih pesama.</span>
-                </div>
-                <div class="command-card" onclick="copyCommand(this, '/remove')">
-                    <span class="cmd-name">/remove [pozicija]</span>
-                    <span class="cmd-desc">Izbaci pesmu koja ti kvari vibe.</span>
-                </div>
-                <div class="command-card" onclick="copyCommand(this, '/shuffle')">
-                    <span class="cmd-name">/shuffle</span>
-                    <span class="cmd-desc">Promešaj red k'o špil karata.</span>
-                </div>
-                <div class="command-card" onclick="copyCommand(this, '/repeat')">
-                    <span class="cmd-name">/repeat</span>
-                    <span class="cmd-desc">Ponavljaj pesmu, listu ili ugasi.</span>
-                </div>
-            </div>
+        </div>
 
-            <div class="category-header">
-                <h2 style="color: #f1c40f;">🔊 Podešavanja Zvuka</h2>
-                <div class="category-line"></div>
+        <div class="category-title">ℹ️ Informacije</div>
+        <div class="commands-grid">
+            <div class="command-card">
+                <span class="command-name">/usage</span>
+                <span class="command-desc">Vidi koliko smo pesama obrnuli.</span>
             </div>
-            <div class="commands-grid">
-                <div class="command-card" onclick="copyCommand(this, '/volume')">
-                    <span class="cmd-name">/volume [0-100]</span>
-                    <span class="cmd-desc">Podesi jačinu (ne budi komšije!).</span>
-                </div>
+            <div class="command-card">
+                <span class="command-name">/invite</span>
+                <span class="command-desc">Ubaci BeatBuddy-ja na svoj server.</span>
             </div>
+        </div>
 
-            <div class="category-header">
-                <h2 style="color: #95a5a6;">ℹ️ Informacije</h2>
-                <div class="category-line"></div>
-            </div>
-            <div class="commands-grid">
-                <div class="command-card" onclick="copyCommand(this, '/usage')">
-                    <span class="cmd-name">/usage</span>
-                    <span class="cmd-desc">Vidi koliko smo pesama obrnuli.</span>
-                </div>
-                <div class="command-card" onclick="copyCommand(this, '/invite')">
-                    <span class="cmd-name">/invite</span>
-                    <span class="cmd-desc">Ubaci BeatBuddy-ja na svoj server.</span>
-                </div>
-            </div>
-
+        <div class="still-questions">
+            <h2>Još uvek imaš pitanja?</h2>
+            <p>Pridruži se našem serveru i pitaj naš tim direktno!</p>
+            <a href="https://discord.com/invite/7vdGCVNKmp" target="_blank" class="btn-discord">
+                Pridruži se 
+                <svg class="discord-icon" viewBox="0 0 127.14 96.36">
+                    <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.71,32.65-1.82,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.19-16.14h0C130.46,50.45,121.43,26.7,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.06,65.69,84.69,65.69Z"/>
+                </svg>
+            </a>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 BeatBuddy. Coded by <span style="color: var(--primary);">vukasinov1c</span></p>
+        <p>© 2026 BeatBuddy. Made by <a href="https://guns.lol/vukasinov1c" target="_blank" style="text-decoration: none; color: var(--primary); font-weight: 700;">vukasinov1c</a></p>
     </footer>
 
     <script>
-        function copyCommand(element, text) {
-            navigator.clipboard.writeText(text);
-            element.classList.add('copied');
-            setTimeout(() => element.classList.remove('copied'), 2000);
-        }
-
-        document.getElementById('commandSearch').addEventListener('input', function(e) {
-            const term = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll('.command-card');
-            cards.forEach(card => {
-                const text = card.innerText.toLowerCase();
-                card.style.display = text.includes(term) ? 'block' : 'none';
-            });
-        });
-
-        // Background animacija
         const canvas = document.getElementById('notesCanvas');
         const ctx = canvas.getContext('2d');
         let notes = [];
